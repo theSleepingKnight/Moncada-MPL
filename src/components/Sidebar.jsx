@@ -2,7 +2,7 @@ import React from 'react';
 import { useSystem } from '../context/AppContext';
 import { Home, Users, Wallet, CreditCard, ShieldCheck, LogOut } from 'lucide-react';
 
-const Sidebar = ({ activeView, setActiveView }) => {
+const Sidebar = ({ activeView, setActiveView, isOpen }) => {
     const { currentUser, logout } = useSystem();
     const role = currentUser?.role;
 
@@ -17,7 +17,7 @@ const Sidebar = ({ activeView, setActiveView }) => {
     const filteredItems = menuItems.filter(item => item.roles.includes(role));
 
     return (
-        <aside className="w-64 bg-slate-950 border-r border-slate-900 flex flex-col h-screen fixed inset-y-0 left-0 z-50 shadow-2xl">
+        <aside className={`w-64 bg-slate-950 border-r border-slate-900 flex flex-col h-screen fixed inset-y-0 left-0 z-50 shadow-2xl transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
             <div className="p-6 border-b border-slate-900 flex items-center gap-3">
                 <div className="bg-gradient-to-br from-green-400 to-emerald-600 w-10 h-10 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/20">
                     <span className="text-white font-black text-xl">M</span>
